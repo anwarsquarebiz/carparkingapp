@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} Reservations {% endblock %}
+{% block content %}
+    <div class="container mt-5">
+      <div class="row">
+        {% if show_results %}
+        {% for parking in show_results %}
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{parking.parking_spot.name}}</h5>
+                    <p class="card-text">
+                        latitude : {{parking.parking_spot.latitude}}, longitude :
+                        {{parking.parking_spot.longitude}}
+                    </p>
+                    <form method="post" action="{% url 'reserve_parking_spot' %}">
+                      <div class="btn btn-primary">Booked</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            You do not have any reservations right now.
+            <a class="btn btn-primary" href="{% url 'home' %}">Search a parking spot</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}

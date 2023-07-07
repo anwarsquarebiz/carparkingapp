@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Nearby Parking Spots</title>
+</head>
+<body>
+    <h1>Search Nearby Parking Spots</h1>
+    
+    <form action="{% url 'search_nearby_parking_spots' %}" method="post">
+        {% csrf_token %}
+        <label for="latitude">Latitude:</label>
+        <input type="text" name="latitude" id="latitude" required><br><br>
+        
+        <label for="longitude">Longitude:</label>
+        <input type="text" name="longitude" id="longitude" required><br><br>
+        
+        <label for="radius">Radius (in meters):</label>
+        <input type="text" name="radius" id="radius" required><br><br>
+        
+        <input type="submit" value="Search">
+    </form>
+    
+    <h2>Nearby Parking Spots:</h2>
+    <ul id="parking-spots">
+        <!-- The parking spots will be dynamically added here using JavaScript -->
+    </ul>
+
+    <script>
+        // JavaScript code to handle the form submission and display the nearby parking spots
+
+        // const form = document.querySelector('form');
+        // const parkingSpotsList = document.getElementById('parking-spots');
+
+        // form.addEventListener('submit', async (event) => {
+        //     event.preventDefault();
+
+        //     const latitude = document.getElementById('latitude').value;
+        //     const longitude = document.getElementById('longitude').value;
+        //     const radius = document.getElementById('radius').value;
+
+        //     const response = await fetch(`/search-nearby/?latitude=${latitude}&longitude=${longitude}&radius=${radius}`);
+        //     const data = await response.json();
+
+        //     if (response.ok) {
+        //         // Clear existing parking spots
+        //         parkingSpotsList.innerHTML = '';
+
+        //         // Add nearby parking spots to the list
+        //         data.nearby_spots.forEach(spot => {
+        //             const listItem = document.createElement('li');
+        //             listItem.textContent = `${spot.name} - (${spot.latitude}, ${spot.longitude})`;
+        //             parkingSpotsList.appendChild(listItem);
+        //         });
+        //     } else {
+        //         // Display an error message
+        //         const listItem = document.createElement('li');
+        //         listItem.textContent = data.message;
+        //         parkingSpotsList.appendChild(listItem);
+        //     }
+        // });
+    </script>
+</body>
+</html>
